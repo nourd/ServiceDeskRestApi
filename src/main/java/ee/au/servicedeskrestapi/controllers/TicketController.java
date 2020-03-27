@@ -22,7 +22,7 @@ class TicketController {
 	}
 
 	
-	@CrossOrigin(origins = "*")
+	//@CrossOrigin(origins = "*")
 	@GetMapping({ "/tickets" })
 	public @ResponseBody Tickets showResourcesTicketList() {
 		Tickets tickets = new Tickets();
