@@ -26,16 +26,48 @@ import ee.au.servicedeskrestapi.model.*;
 @Table(name = "tickets")
 public class Ticket extends Document {
 
-    @Column(name = "email")
-	@NotEmpty
-    private String email;
-
-    @Column(name = "title")
+	@Column(name = "title")
 	@NotEmpty
     private String title;
 
+	@Column(name = "document_number")
+	@NotEmpty
+	private String documentNumber;
+	
+	@Column(name = "problem_description")
+	@NotEmpty
+    private String problemDescription;
+	
+	@Column(name = "email")
+	@NotEmpty
+    private String email;
+
+    @Column(name = "status_id")
+	//@NotEmpty
+    private Integer statusId;
+
     public String getTitle() {
 		return this.title;
+	}
+
+	public String getDocumentNumber() {
+		return this.documentNumber;
+	}
+
+	public String getProblemDescription() {
+		return this.problemDescription;
+	}
+
+	public void setProblemDescription(String problemDescription) {
+		this.problemDescription = problemDescription;
+	}
+
+	public Integer getStatusId() {
+		return this.statusId;
+	}
+
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 
 	public void setTitle(String title) {
