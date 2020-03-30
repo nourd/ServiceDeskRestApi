@@ -12,10 +12,18 @@ import java.util.Map;
 
 import ee.au.servicedeskrestapi.repositories.*;
 import ee.au.servicedeskrestapi.dao.*;
+import ee.au.servicedeskrestapi.errorhandling.EntityNotFoundException;
 
 @Service
 public class TicketService {
-
+/*
+    @Autowired
+    private TicketRepository birdRepository;
+/*
+    public Bird getBirdNoException(Long birdId) {
+        return birdRepository.findOne(birdId);
+    }
+*/
     @Autowired
     TicketRepository ticketRepository;
 
@@ -25,15 +33,20 @@ public class TicketService {
         return tickets;
     }
 
-    public Ticket getTicketById(int id) {
-        return ticketRepository.findById(id).get();
+    public Ticket getById(Integer id) {
+        Ticket ticket;
+        ticket =  ticketRepository.findById(id).get();
+        if (ticket == null) {
+            throw new EntityNotFoundException(Ticket.class, "id", id.toString());
+        }
+        return ticket;
     }
 
-    public void saveOrUpdate(Ticket ticket) {
-        ticketRepository.save(ticket);
+    public Ticket addOrUpdate(Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 
-    public void delete(int id) {
+    public void delete(Integer id) {
         ticketRepository.deleteById(id);
     }
 }

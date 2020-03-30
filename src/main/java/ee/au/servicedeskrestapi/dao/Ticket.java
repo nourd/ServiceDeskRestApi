@@ -16,6 +16,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlElement;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import org.springframework.beans.support.MutableSortDefinition;
@@ -23,6 +27,10 @@ import org.springframework.beans.support.PropertyComparator;
 
 import ee.au.servicedeskrestapi.model.*;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 
 @Entity
