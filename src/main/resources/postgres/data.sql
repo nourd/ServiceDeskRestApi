@@ -1,9 +1,9 @@
 
-INSERT INTO tickets (id, title, document_number, document_date, email) 
+INSERT INTO servicedesk.tickets (title, document_number, email) 
 VALUES
-  (1, 'First', 'TK-1', '2020-03-23', 'a@a.ee'),
-  (2, 'Second', 'TK-2', '2020-03-23', 'b@a.ee'),
-  (3, 'First', 'TK-3', '2020-03-23', 'c@a.ee');
+  ( 'First', 'TK-1', 'a@a.ee'),
+  ('Second', 'TK-2',  'b@a.ee'),
+  ('Third', 'TK-3',  'c@a.ee');
 
 INSERT INTO statuses (id, name) 
 VALUES

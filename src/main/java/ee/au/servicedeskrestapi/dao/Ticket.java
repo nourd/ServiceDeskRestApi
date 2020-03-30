@@ -16,10 +16,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlElement;
 
+
+
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
 import ee.au.servicedeskrestapi.model.*;
+
 
 
 @Entity
@@ -27,19 +30,19 @@ import ee.au.servicedeskrestapi.model.*;
 public class Ticket extends Document {
 
 	@Column(name = "title")
-	@NotEmpty
+	//@NotEmpty
     private String title;
-
+/*
 	@Column(name = "document_number")
-	@NotEmpty
+	//@NotEmpty
 	private String documentNumber;
-	
+*/	
 	@Column(name = "problem_description")
-	@NotEmpty
+	//@NotEmpty
     private String problemDescription;
 	
 	@Column(name = "email")
-	@NotEmpty
+	//@NotEmpty
     private String email;
 
     @Column(name = "status_id")
@@ -49,11 +52,12 @@ public class Ticket extends Document {
     public String getTitle() {
 		return this.title;
 	}
-
+/*
 	public String getDocumentNumber() {
 		return this.documentNumber;
 	}
-
+*/
+	
 	public String getProblemDescription() {
 		return this.problemDescription;
 	}
@@ -81,7 +85,7 @@ public class Ticket extends Document {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+/*
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ticket_priorities", joinColumns = @JoinColumn(name = "ticket_id"),
 			inverseJoinColumns = @JoinColumn(name = "priority_id"))
@@ -112,5 +116,5 @@ public class Ticket extends Document {
 	public void addPriority(Priority priority) {
 		getPrioritiesInternal().add(priority);
 	}
-
+*/
 }

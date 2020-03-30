@@ -1,0 +1,17 @@
+#http://localhost:8090/tickets
+
+
+# POST
+
+POST http://localhost:8090/tickets
+Content-Type: application/json
+
+{ 
+     "documentNumber": "TK-4",
+      "documentDate": "2020-03-23",
+      "title": "four",
+      "problemDescription": "Some problem",
+      "email": "a@a.ee",
+      "statusId": 1
+}
+/**/

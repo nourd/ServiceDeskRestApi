@@ -4,13 +4,15 @@
 -- DROP TABLE IF EXISTS tickets_priorities;
 
 
-CREATE TABLE tickets (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  title VARCHAR(250) NOT NULL,
-  document_number VARCHAR(20) NOT NULL,
-  document_date DATE not null,
+CREATE TABLE servicedesk.tickets (
+  id SERIAL  PRIMARY KEY,
+  title VARCHAR(250) DEFAULT NULL,
+  document_number VARCHAR(20) DEFAULT NULL,
+  document_date DATE DEFAULT NOW(),
   email VARCHAR(250) DEFAULT NULL,
-  problem_description VARCHAR(2000)
+  problem_description VARCHAR(2000) DEFAULT NULL,
+  status_id INT DEFAULT NULL,
+  priority_id INT DEFAULT NULL
 );
 
 CREATE TABLE statuses (
