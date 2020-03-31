@@ -28,7 +28,11 @@ public class Ticket extends Document {
 
 	@Column(name = "status")
 	//@NotEmpty
-    private String status;
+	private String status;
+	
+	@Column(name = "priority")
+	//@NotEmpty
+    private String priority;
 
     public String getTitle() {
 		return this.title;
@@ -37,15 +41,7 @@ public class Ticket extends Document {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-/*
-	public String getDocumentNumber() {
-		return this.documentNumber;
-	}
 
-	public void setDocumentNumber(String documentNumber) {
-		this.documentNumber = documentNumber;
-	}
-*/	
 	public String getProblemDescription() {
 		return this.problemDescription;
 	}
@@ -62,7 +58,14 @@ public class Ticket extends Document {
 		this.status = status;
 	}
 	
-    
+	public String getPriority() {
+		return this.priority;
+	}
+
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+	
     public String getEmail() {
 		return this.email;
 	}

@@ -30,3 +30,11 @@ ADD CONSTRAINT priority_fk FOREIGN KEY (priority_id) REFERENCES servicedesk.prio
 --CREATE CAST (CHARACTER VARYING as servicedesk.status) WITH INOUT AS IMPLICIT;
 
 --CREATE CAST (servicedesk.status as CHARACTER VARYING) WITH INOUT AS IMPLICIT;
+
+--CREATE TYPE servicedesk.priority AS ENUM ('very low', 'low', 'medium', 'high', 'very high');
+
+--CREATE CAST (CHARACTER VARYING as servicedesk.priority) WITH INOUT AS IMPLICIT;
+
+--CREATE CAST (servicedesk.priority as CHARACTER VARYING) WITH INOUT AS IMPLICIT;
+
+

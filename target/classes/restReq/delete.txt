@@ -1,1 +1,1 @@
-DELETE http://localhost:8090/tickets/6
+DELETE http://localhost:8090/tickets/9
