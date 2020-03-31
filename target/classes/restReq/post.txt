@@ -4,7 +4,8 @@ POST http://localhost:8090/tickets
 Content-Type: application/json
 
 { 
-  "title": "Second",
-  "problemDescription": "some",
-  "email": "b@a.ee"
+  "title": "First",
+  "problemDescription": "some problem",
+  "email": "b@a.ee",
+  "status": "open"
 }

@@ -2,9 +2,9 @@ PUT http://localhost:8090/tickets/1
 Content-Type: application/json
 
 { 
-     "id": 1,
-      "title": "new four",
+     "id": 24,
+      "title": "updated",
       "problemDescription": "Some problem",
       "email": "a@a.ee",
-      "statusId": 1
+      "status": "close"
 }

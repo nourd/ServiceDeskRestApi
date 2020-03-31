@@ -3,15 +3,18 @@ package ee.au.servicedeskrestapi.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.http.HttpStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,7 +23,7 @@ import ee.au.servicedeskrestapi.dao.Ticket;
 import ee.au.servicedeskrestapi.exceptions.MyResourceNotFoundException;
 import ee.au.servicedeskrestapi.repositories.TicketRepository;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping(value = "/tickets")
 class TicketController {
@@ -42,7 +45,6 @@ class TicketController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value="/ticket/{id}")
 	Ticket getTicketById(@PathVariable Long id, HttpServletResponse response)  {
-		//return tickets.getById(id);
 		try {
 			return ticketRepository.findById(id).get();
 		}
@@ -50,33 +52,21 @@ class TicketController {
 			throw new ResponseStatusException(
 			  HttpStatus.NOT_FOUND, "Ticket Not Found", exc);
 	   }
-		
-		
 	}
-/*
+
 	@CrossOrigin(origins = "*")
 	@PostMapping({"/tickets"})
     Ticket createOrSaveTicket(@RequestBody Ticket newTicket) {
-		newTicket.setDocumentNumber("aaa");
-        return tickets.addOrUpdate(newTicket);
+		return ticketRepository.save(newTicket);
 	}
-	/*
+	
 	@CrossOrigin(origins = "*")
 	@PutMapping("/tickets/{id}")
     Ticket updateTicket(@RequestBody Ticket newTicket, @PathVariable Integer id) {
- 
-        return tickets.getById(id).map(ticket -> {
-            ticket.setTitle(newTicket.getTitle());
-            return tickets.save(ticket);
-        }).orElseGet(() -> {
-            newTicket.setId(id);
-            return tickets.save(newTicket);
-        });
+		return ticketRepository.save(newTicket);
 	}
-*/
 	
-	
-
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/tickets/{id}")
     void deleteTicket(@PathVariable Long id) {
         ticketRepository.deleteById(id);

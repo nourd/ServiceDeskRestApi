@@ -1,38 +1,56 @@
 package ee.au.servicedeskrestapi.dao;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import ee.au.servicedeskrestapi.model.Document;
+import ee.au.servicedeskrestapi.model.BaseEntity;
 
 @Entity
 @Table(name = "tickets")
-public class Ticket extends Document {
+public class Ticket extends BaseEntity {
 
 	@Column(name = "title")
-	//@NotEmpty
-    private String title;
-/*
-	@Column(name = "document_number")
-	//@NotEmpty
-	private String documentNumber;
-*/	
-	@Column(name = "problem_description")
-	//@NotEmpty
+	private String title;
+		
+	@Column(name = "problem_description")	
     private String problemDescription;
 	
-	@Column(name = "email")
-	//@NotEmpty
+	@Column(name = "email")	
     private String email;
 
-	@Column(name = "status")
-	//@NotEmpty
+	@Column(name = "status")	
 	private String status;
 	
-	@Column(name = "priority")
-	//@NotEmpty
-    private String priority;
+	@Column(name = "priority")	
+	private String priority;
+	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "doc_number")
+	private Long documentNumber;
+
+	@Column(name = "document_date")
+	private Date documentDate;
+
+	public Long getDocumentNumber() {
+		return this.documentNumber;
+	}
+
+	public void setDocumentNumber(Long documentNumber) {
+		this.documentNumber = documentNumber;
+	}
+
+	public Date getDocumentDate() {
+		return this.documentDate;
+	}
+
+	public void setDocumentDate(Date documentDate) {
+		this.documentDate = documentDate;
+	}
 
     public String getTitle() {
 		return this.title;
