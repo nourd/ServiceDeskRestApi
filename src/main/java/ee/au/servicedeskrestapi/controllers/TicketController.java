@@ -2,6 +2,9 @@ package ee.au.servicedeskrestapi.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import ee.au.servicedeskrestapi.dao.Ticket;
 import ee.au.servicedeskrestapi.repositories.TicketRepository;
@@ -35,9 +39,17 @@ class TicketController {
 
 	@CrossOrigin(origins = "*")
 	@GetMapping(value="/ticket/{id}")
-	Ticket getTicketById(@PathVariable Long id)  {
+	Ticket getTicketById(@PathVariable Long id, HttpServletResponse response)  {
 		//return tickets.getById(id);
-		return ticketRepository.findById(id).get();
+		try {
+			return ticketRepository.findById(id).get();
+		}
+		catch (MyResourceNotFoundException exc) {
+			throw new ResponseStatusException(
+			  HttpStatus.NOT_FOUND, "Ticket Not Found", exc);
+	   }
+		
+		
 	}
 /*
 	@CrossOrigin(origins = "*")
