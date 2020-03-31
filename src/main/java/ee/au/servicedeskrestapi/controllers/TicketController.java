@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import ee.au.servicedeskrestapi.dao.Ticket;
+import ee.au.servicedeskrestapi.exceptions.MyResourceNotFoundException;
 import ee.au.servicedeskrestapi.repositories.TicketRepository;
 
 @CrossOrigin(origins = "*")
@@ -74,10 +76,9 @@ class TicketController {
 */
 	
 	
-/*
+
 	@DeleteMapping("/tickets/{id}")
     void deleteTicket(@PathVariable Long id) {
-        tickets.delete(id);
+        ticketRepository.deleteById(id);
     }
-*/
 }
