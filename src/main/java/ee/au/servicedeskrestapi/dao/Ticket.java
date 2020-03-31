@@ -1,37 +1,10 @@
 package ee.au.servicedeskrestapi.dao;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.xml.bind.annotation.XmlElement;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-
-import ee.au.servicedeskrestapi.model.*;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-
+import ee.au.servicedeskrestapi.model.Document;
 
 @Entity
 @Table(name = "tickets")
@@ -53,19 +26,26 @@ public class Ticket extends Document {
 	//@NotEmpty
     private String email;
 
-    @Column(name = "status_id")
+	@Column(name = "status")
 	//@NotEmpty
-    private Integer statusId;
+    private String status;
 
     public String getTitle() {
 		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 /*
 	public String getDocumentNumber() {
 		return this.documentNumber;
 	}
-*/
-	
+
+	public void setDocumentNumber(String documentNumber) {
+		this.documentNumber = documentNumber;
+	}
+*/	
 	public String getProblemDescription() {
 		return this.problemDescription;
 	}
@@ -74,17 +54,14 @@ public class Ticket extends Document {
 		this.problemDescription = problemDescription;
 	}
 
-	public Integer getStatusId() {
-		return this.statusId;
+	public String getStatus() {
+		return this.status;
 	}
 
-	public void setStatusId(Integer statusId) {
-		this.statusId = statusId;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	
     
     public String getEmail() {
 		return this.email;
@@ -93,36 +70,4 @@ public class Ticket extends Document {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-/*
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "ticket_priorities", joinColumns = @JoinColumn(name = "ticket_id"),
-			inverseJoinColumns = @JoinColumn(name = "priority_id"))
-	private Set<Priority> priorities;
-
-	protected Set<Priority> getPrioritiesInternal() {
-		if (this.priorities == null) {
-			this.priorities = new HashSet<>();
-		}
-		return this.priorities;
-	}
-
-	protected void setPrioritiesInternal(Set<Priority> priorities) {
-		this.priorities = priorities;
-	}
-
-	@XmlElement
-	public List<Priority> getPriorities() {
-		List<Priority> sortedPriorities = new ArrayList<>(getPrioritiesInternal());
-		PropertyComparator.sort(sortedPriorities, new MutableSortDefinition("name", true, true));
-		return Collections.unmodifiableList(sortedPriorities);
-	}
-
-	public int getNrOfPriorities() {
-		return getPrioritiesInternal().size();
-	}
-
-	public void addPriority(Priority priority) {
-		getPrioritiesInternal().add(priority);
-	}
-*/
 }

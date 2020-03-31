@@ -1,26 +1,22 @@
 package ee.au.servicedeskrestapi.controllers;
 
+import java.util.List;
+
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
-import ee.au.servicedeskrestapi.collections.*;
-import ee.au.servicedeskrestapi.repositories.*;
-import ee.au.servicedeskrestapi.services.TicketService;
-import ee.au.servicedeskrestapi.dao.*;
-import ee.au.servicedeskrestapi.errorhandling.EntityNotFoundException;
+import ee.au.servicedeskrestapi.collections.Tickets;
+import ee.au.servicedeskrestapi.dao.Ticket;
+import ee.au.servicedeskrestapi.repositories.TicketRepository;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -28,24 +24,28 @@ import ee.au.servicedeskrestapi.errorhandling.EntityNotFoundException;
 class TicketController {
 
 	@Autowired
-    private TicketService tickets;
+	//private TicketService tickets;
+	
+	TicketRepository ticketRepository;
 
-	
-	
+
+
 	@CrossOrigin(origins = "*")
 	@GetMapping({ "/tickets" })
-	public @ResponseBody Tickets showResourcesTicketList() throws EntityNotFoundException {
-		Tickets tickets = new Tickets();
-		tickets.getTicketList().addAll(this.tickets.getAllTickets());
-		return tickets;
+	public List<Ticket> showResourcesTicketList() {
+		//<Ticket>Example<Ticket> example = Example.of(Ticket.getStatus("open"));
+		return ticketRepository.findAll();
+		
 	}
 
 	@CrossOrigin(origins = "*")
 	@GetMapping(value="/ticket/{id}")
-	Ticket getTicketById(@PathVariable Integer id) throws EntityNotFoundException {
-		return tickets.getById(id);
+	Ticket getTicketById(@PathVariable Long id)  {
+		//return tickets.getById(id);
+		return ticketRepository.findById(id).get();
 	}
-
+/*
+	@CrossOrigin(origins = "*")
 	@PostMapping({"/tickets"})
     Ticket createOrSaveTicket(@RequestBody Ticket newTicket) {
 		newTicket.setDocumentNumber("aaa");
@@ -67,10 +67,10 @@ class TicketController {
 */
 	
 	
-
+/*
 	@DeleteMapping("/tickets/{id}")
-    void deleteTicket(@PathVariable Integer id) {
+    void deleteTicket(@PathVariable Long id) {
         tickets.delete(id);
     }
-
+*/
 }

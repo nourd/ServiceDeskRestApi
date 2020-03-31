@@ -1,19 +1,9 @@
 package ee.au.servicedeskrestapi.repositories;
 
-import java.util.Collection;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import ee.au.servicedeskrestapi.dao.*;
+import ee.au.servicedeskrestapi.dao.Ticket;
 
 
-public interface TicketRepository extends CrudRepository<Ticket, Integer> {
-
-	@Transactional(readOnly = true)
-	Collection<Ticket> findAll() throws DataAccessException;
-
+public interface TicketRepository extends JpaRepository<Ticket, Long> {
 }
