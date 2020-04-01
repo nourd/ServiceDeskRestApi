@@ -1,1 +1,1 @@
-http://localhost:8090/tickets
+http://localhost:8090/statuses

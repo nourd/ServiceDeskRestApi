@@ -28,10 +28,10 @@ class TicketControllerTests {
 	@BeforeEach
 	void setup() {
         Ticket one = new Ticket();
-        one.setDocumentNumber("TK-1");
+        one.setTitle("TK-1");
 		one.setStatus("open");
         Ticket two = new Ticket();
-        two.setDocumentNumber("TK-2");
+        two.setTitle("TK-2");
 		two.setStatus("open");
 	}
 

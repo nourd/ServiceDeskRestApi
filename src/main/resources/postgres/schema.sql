@@ -37,4 +37,5 @@ ADD CONSTRAINT priority_fk FOREIGN KEY (priority_id) REFERENCES servicedesk.prio
 
 --CREATE CAST (servicedesk.priority as CHARACTER VARYING) WITH INOUT AS IMPLICIT;
 
-
+CREATE SEQUENCE servicedesk.document_number_seq START 1001;
+ALTER TABLE servicedesk.tickets ADD COLUMN doc_number integer  DEFAULT nextval('servicedesk.document_number_seq')
