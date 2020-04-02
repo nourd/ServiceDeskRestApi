@@ -4,11 +4,21 @@ import java.io.Serializable;
 
 
 public class EnumItem implements Serializable {
-    public String name;
+    private String name;
 
     public EnumItem(final String name) {
         this.name = name;
     }
+
+    public String getName() {
+		return name;
+	}
+
+	public void setNmae(String name) {
+		this.name = name;
+	}
+
+
 
 
 }
